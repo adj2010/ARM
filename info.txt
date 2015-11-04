@@ -1,0 +1,14 @@
+https://portal.azure.com/#create/Microsoft.Template
+
+
+
+        # Optional GUI tools            
+        WindowsFeature ADDSTools            
+        {             
+            Ensure = "Present"             
+            Name = "RSAT-ADDS"             
+        } 
+
+
+http://blogs.technet.com/b/ashleymcglone/archive/2015/03/20/deploy-active-directory-with-powershell-dsc-a-k-a-dsc-promo.aspx
+
