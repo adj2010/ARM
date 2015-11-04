@@ -11,10 +11,3 @@ https://portal.azure.com/#create/Microsoft.Template
 
 
 http://blogs.technet.com/b/ashleymcglone/archive/2015/03/20/deploy-active-directory-with-powershell-dsc-a-k-a-dsc-promo.aspx
-
-https://github.com/adj2010/ARM/blob/master/azuredeploy.json
-
-
-https://raw.githubusercontent.com/adj2010/ARM/master/azuredeploy.json
-
-<a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fadj2010%2FARM%2Fmaster%2Fazuredeploy.json" target="_blank">
