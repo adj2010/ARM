@@ -6,7 +6,8 @@
       "type": "string",
       "metadata": {
         "description": "The name of the new storage account created to store the VMs disks"
-      }
+      },
+	"defaultValue": "ContosoStorage"
     },
     "storageAccountType": {
       "type": "string",
@@ -33,14 +34,15 @@
       ],
       "metadata": {
         "description": "The region to deploy the resources into"
-      }
+      },
+	"defaultValue": "West US"
     },
     "virtualNetworkName": {
       "type": "string",
       "metadata": {
         "description": "The name of the Virtual Network to Create"
       },
-      "defaultValue": "adVNET"
+      "defaultValue": "Contoso_VNET1"
     },
     "virtualNetworkAddressRange": {
       "type": "string",
@@ -54,7 +56,7 @@
       "metadata": {
         "description": "The name of the subnet created in the new VNET"
       },
-      "defaultValue": "adSubnet"
+      "defaultValue": "Contoso_Subnet1"
     },
     "adSubnet": {
       "type": "string",
@@ -128,7 +130,7 @@
       "metadata": {
         "description": "The name of the Administrator of the new VM and Domain"
       },
-      "defaultValue": "adAdministrator"
+      "defaultValue": "ContosoAdmin"
     },
     "adminPassword": {
       "type": "securestring",
@@ -159,7 +161,7 @@
       "metadata": {
         "description": "The size of the VM Created"
       },
-      "defaultValue": "Standard_D2"
+      "defaultValue": "Standard_D1"
     },
     "imagePublisher": {
       "type": "string",
@@ -193,13 +195,15 @@
       "type": "string",
       "metadata": {
         "description": "The FQDN of the AD Domain created "
-      }      
+      },
+	"defaultValue": "root.contoso.com"      
     },
     "dnsPrefix": {
       "type": "string",
       "metadata": {
         "description": "The DNS prefix for the public IP address used by the Load Balancer"
-      }
+      },
+	"defaultValue": "LBGUIDRANDOM"
     },
     "pdcRDPPort": {
       "type": "int",
