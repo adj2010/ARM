@@ -224,7 +224,7 @@
       "metadata": {
         "description": "The location of resources such as templates and DSC modules that the script is dependent"
       },
-      "defaultValue": "https://raw.githubusercontent.com/adj2010/ARM"
+      "defaultValue": "https://raw.githubusercontent.com/adj2010/ARM/master"
     }
   },
   "variables": {
