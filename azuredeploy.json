@@ -7,7 +7,7 @@
       "metadata": {
         "description": "The name of the new storage account created to store the VMs disks"
       },
-	"defaultValue": "ContosoStorage"
+	"defaultValue": "ContosoStorageGUID1001"
     },
     "storageAccountType": {
       "type": "string",
@@ -203,7 +203,7 @@
       "metadata": {
         "description": "The DNS prefix for the public IP address used by the Load Balancer"
       },
-	"defaultValue": "LBGUIDRANDOM"
+	"defaultValue": "ContosoLBGUID1001"
     },
     "pdcRDPPort": {
       "type": "int",
