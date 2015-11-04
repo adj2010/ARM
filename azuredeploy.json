@@ -203,7 +203,7 @@
       "metadata": {
         "description": "The DNS prefix for the public IP address used by the Load Balancer"
       },
-	"defaultValue": "ContosoLBGUID1001"
+	"defaultValue": "lbguidrandom"
     },
     "pdcRDPPort": {
       "type": "int",
