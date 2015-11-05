@@ -15,6 +15,4 @@ Click the button below to Backup the Contoso Forest
     <img src="http://azuredeploy.net/deploybutton.png"/>
 </a>
 
-WK: added parameter file. 
-
 
