@@ -7,7 +7,7 @@
       "metadata": {
         "description": "The name of the new storage account created to store the VMs disks"
       },
-	"defaultValue|10000000-99999999": 10000000
+	"defaultValue|10000000-99999999": "10000000"
     },
     "storageAccountType": {
       "type": "string",
