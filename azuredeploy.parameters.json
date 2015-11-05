@@ -1,0 +1,87 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+   "parameters": {
+    "newStorageAccountName": {
+        "value": "ArjenFabrikamV1"
+    },
+    "storageAccountType": {
+        "value": "Standard_LRS"
+    },
+    "location": {
+    	  "value": "West US"
+    },
+    "virtualNetworkName": {
+        "value": "adVNET"
+    },
+    "virtualNetworkAddressRange": {
+        "value": "10.0.0.0/16"
+    },
+    "adSubnetName": {
+        "value": "adSubnet"
+    },
+    "adSubnet": {
+        "value": "10.0.0.0/24"
+    },
+    "adPDCNicName": {
+        "value": "adPDCNic"
+    },
+    "adPDCNicIPAddress": {
+        "value": "10.0.0.4"
+    },
+    "adBDCNicName": {
+        "value": "adBDCNic"
+    },
+    "adBDCNicIPAddress": {
+        "value": "10.0.0.5"
+    },
+    "publicIPAddressName": {
+        "value": "adpublicipwk1"
+    },
+    "publicIPAddressType": {
+        "value": "Dynamic"
+    },
+    "adPDCVMName": {
+        "value": "adPDC"
+    },
+    "adBDCVMName": {
+        "value": "adBDC"
+    },
+    "adminUsername": {
+        "value": "ContosoAdmin"
+    },
+    "adminPassword": {
+        "value" :  "!Vanadium389."
+    },
+    "adVMSize": {
+      "value": "Standard_D1"
+    },
+    "imagePublisher": {
+      "value": "MicrosoftWindowsServer"
+    },
+    "imageOffer": {
+      "value": "WindowsServer"
+    },
+    "imageSKU": {
+      "value": "2012-R2-Datacenter"
+    },
+    "adAvailabilitySetName": {
+      "value": "adAvailabiltySet"
+    },
+    "domainName": {
+        "value": "root.fabrikam.com"      
+    },
+    "dnsPrefix": {   
+	      "value": "lbguidrandomwk1"
+    },
+    "pdcRDPPort": {
+      "value": 3389
+    },
+    "bdcRDPPort": {
+        "value": 13389
+    },
+    "AssetLocation": {
+      "value": "https://raw.githubusercontent.com/adj2010/ARM/master"
+    }
+  }
+}
