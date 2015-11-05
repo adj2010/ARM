@@ -105,11 +105,6 @@
             },
 	"defaultValue": "4"
         },
-         "registeredContainers": {
-            "type": "array",
-            "metadata": {
-                "description": "Array of registered containers. It will take input as type of container; vm name; cloud service name. e.g for iaasvm type: iaasvmcontainer;myvm1;myvm1"
-            },
     },
     "resources": [
         {
@@ -159,21 +154,6 @@
                     }
                 }
             ]
-        }
-    ]
-},
-    "resources": [
-        {
-            "name": "[concat(parameters('name'), '/', parameters('registeredContainers')[copyIndex()], '/', parameters('registeredContainers')[copyIndex()])]",
-            "apiVersion": "2015-03-15",
-            "type": "Microsoft.Backup/BackupVault/registeredContainers/protectedItems",
-            "copy": {
-                "name": "protectedItemsCopy",
-                "count": "[length(parameters('registeredContainers'))]"
-            },
-            "properties": {
-                "policyId": "[parameters('policyName')]"
-            }
         }
     ]
 }
