@@ -75,7 +75,7 @@
             "metadata": {
                 "description": "Backup Schedule will run on array of Days like, Monday, Tuesday etc. Applies in Weekly Backup Type only."
             },
-	"defaultValue": []
+	"defaultValue": ["Monday"]
         },
         "scheduleRunTimes": {
             "type": "array",
