@@ -7,11 +7,7 @@
       "metadata": {
         "description": "The name of the new storage account created to store the VMs disks"
       },
-<<<<<<< HEAD
-      "defaultValue": "ContosoStorageGUID1002"
-=======
 	"defaultValue": "ContosoStorageFFFF"
->>>>>>> origin/master
     },
     "storageAccountType": {
       "type": "string",
@@ -118,28 +114,16 @@
     "adDC1VMName": {
       "type": "string",
       "metadata": {
-<<<<<<< HEAD
         "description": "The computer name of DC1"
       },
       "defaultValue": "adDC1"
-=======
-        "description": "The computer name of the DC10"
-      },
-      "defaultValue": "DC10"
->>>>>>> origin/master
     },
     "adDC2VMName": {
       "type": "string",
       "metadata": {
-<<<<<<< HEAD
         "description": "The computer name of DC2"
       },
       "defaultValue": "adDC2"
-=======
-        "description": "The computer name of the DC12"
-      },
-      "defaultValue": "DC12"
->>>>>>> origin/master
     },
     "adminUsername": {
       "type": "string",
@@ -220,11 +204,7 @@
       "metadata": {
         "description": "The DNS prefix for the public IP address used by the Load Balancer"
       },
-<<<<<<< HEAD
-      "defaultValue": "lbguidrandom"
-=======
 	"defaultValue": "dnslbguidrandom"
->>>>>>> origin/master
     },
     "dc1RDPPort": {
       "type": "int",
