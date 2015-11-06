@@ -1,6 +1,6 @@
 # Azure Contoso Forest
 
-Click the button below to Deploy the Contoso Forest
+Deploy the Contoso Forest to Azure
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fadj2010%2FARM%2Fmaster%2Fazuredeploy.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
@@ -9,7 +9,7 @@ Click the button below to Deploy the Contoso Forest
     <img src="http://armviz.io/visualizebutton.png"/>
 </a>
 
-Click the button below to Backup the Contoso Forest
+Deploy BackupVault for Contoso Forest (Protected VM DCs)
 
 <a href="https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Fadj2010%2FARM%2Fmaster%2Fv1.json" target="_blank">
     <img src="http://azuredeploy.net/deploybutton.png"/>
