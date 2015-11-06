@@ -14,7 +14,7 @@
                 "description": "Name of the Vault"
             },
 	"defaultValue": "contosobackupvault"
-        }
+        },
         "location": {
             "type": "string",
             "allowedValues": [
