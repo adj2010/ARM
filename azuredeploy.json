@@ -216,7 +216,7 @@
     },
     "variables": {
     	"newStorageAccountName": "[concat('Storage',uniquestring(subscription().subscriptionId))]",
-	"dnsPrefix": "[concat(resourceGroup().name,uniquestring(subscription().subscriptionId))]",
+	"dnsPrefix": "[concat((toLower(resourceGroup().name),uniquestring(subscription().subscriptionId))]",
         "adLBFE": "LBFE",
         "adLBBE": "LBBE",
         "adDC1RDPNAT": "adDC1RDP",
