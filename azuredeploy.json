@@ -7,7 +7,11 @@
       "metadata": {
         "description": "The name of the new storage account created to store the VMs disks"
       },
+<<<<<<< HEAD
       "defaultValue": "ContosoStorageGUID1002"
+=======
+	"defaultValue": "ContosoStorageFFFF"
+>>>>>>> origin/master
     },
     "storageAccountType": {
       "type": "string",
@@ -42,14 +46,14 @@
       "metadata": {
         "description": "The name of the Virtual Network to Create"
       },
-      "defaultValue": "adVNET"
+      "defaultValue": "ContosoVNET1"
     },
     "virtualNetworkAddressRange": {
       "type": "string",
       "metadata": {
         "description": "The address range of the new VNET in CIDR format"
       },
-      "defaultValue": "10.0.0.0/16"
+      "defaultValue": "10.1.0.0/16"
     },
     "adSubnetName": {
       "type": "string",
@@ -63,7 +67,7 @@
       "metadata": {
         "description": "The address range of the subnet created in the new VNET"
       },
-      "defaultValue": "10.0.0.0/24"
+      "defaultValue": "10.1.0.0/24"
     },
     "adDC1NicName": {
       "type": "string",
@@ -77,7 +81,7 @@
       "metadata": {
         "description": "The IP address of the new AD DC1"
       },
-      "defaultValue": "10.0.0.4"
+      "defaultValue": "10.1.0.10"
     },
     "adDC2NicName": {
       "type": "string",
@@ -91,7 +95,7 @@
       "metadata": {
         "description": "The IP address of the new AD DC2"
       },
-      "defaultValue": "10.0.0.5"
+      "defaultValue": "10.1.0.12"
     },
     "publicIPAddressName": {
       "type": "string",
@@ -114,16 +118,28 @@
     "adDC1VMName": {
       "type": "string",
       "metadata": {
+<<<<<<< HEAD
         "description": "The computer name of DC1"
       },
       "defaultValue": "adDC1"
+=======
+        "description": "The computer name of the DC10"
+      },
+      "defaultValue": "DC10"
+>>>>>>> origin/master
     },
     "adDC2VMName": {
       "type": "string",
       "metadata": {
+<<<<<<< HEAD
         "description": "The computer name of DC2"
       },
       "defaultValue": "adDC2"
+=======
+        "description": "The computer name of the DC12"
+      },
+      "defaultValue": "DC12"
+>>>>>>> origin/master
     },
     "adminUsername": {
       "type": "string",
@@ -136,7 +152,8 @@
       "type": "securestring",
       "metadata": {
         "description": "The password for the Administrator account of the new VM and Domain"
-      }
+      },
+	"defaultValue": "PutPeopleFirst!"
     },
     "adVMSize": {
       "type": "string",
@@ -203,7 +220,11 @@
       "metadata": {
         "description": "The DNS prefix for the public IP address used by the Load Balancer"
       },
+<<<<<<< HEAD
       "defaultValue": "lbguidrandom"
+=======
+	"defaultValue": "dnslbguidrandom"
+>>>>>>> origin/master
     },
     "dc1RDPPort": {
       "type": "int",
