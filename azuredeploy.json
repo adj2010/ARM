@@ -241,8 +241,8 @@
     "adDC1ConfigurationFunction": "CreateADPDC.ps1\\CreateADPDC",
     "adDC2ModulesURL": "[concat(parameters('AssetLocation'),'/CreateADBDC.ps1.zip')]",
     "adDC2ConfigurationFunction": "CreateADBDC.ps1\\CreateADBDC"
-    "newstorageaccountname" : "[concat('contosostorage', uniqueString(resourceGroup().id))]",
-    "dnsPrefix" : "[concat('dnsprefix', uniqueString(resourceGroup().id))]",
+    "newstorageaccountname" : "[concat('contosostorage', uniqueString(subscription().subscriptionId))]",
+    "dnsPrefix" : "[concat('dnsprefix', uniqueString(subscription().subscriptionId))]",
   },
   "resources": [
     {
