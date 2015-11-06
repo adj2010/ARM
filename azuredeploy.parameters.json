@@ -3,7 +3,7 @@
   "contentVersion": "1.0.0.0",
    "parameters": {
     "newStorageAccountName": {
-        "value": "ArjenFabrikamV1"
+        "value": "ArjenFabrikamV2"
     },
     "storageAccountType": {
         "value": "Standard_LRS"
@@ -23,29 +23,29 @@
     "adSubnet": {
         "value": "10.0.0.0/24"
     },
-    "adPDCNicName": {
-        "value": "adPDCNic"
+    "adDC1NicName": {
+        "value": "adDC1Nic"
     },
-    "adPDCNicIPAddress": {
+    "adDC1NicIPAddress": {
         "value": "10.0.0.4"
     },
-    "adBDCNicName": {
-        "value": "adBDCNic"
+    "adDC2NicName": {
+        "value": "adDC2Nic"
     },
-    "adBDCNicIPAddress": {
+    "adDC2NicIPAddress": {
         "value": "10.0.0.5"
     },
     "publicIPAddressName": {
-        "value": "adpublicipwk1"
+        "value": "adpublicipwk2"
     },
     "publicIPAddressType": {
         "value": "Dynamic"
     },
-    "adPDCVMName": {
-        "value": "adPDC"
+    "adDC1VMName": {
+        "value": "adDC1"
     },
-    "adBDCVMName": {
-        "value": "adBDC"
+    "adDC2VMName": {
+        "value": "adDC2"
     },
     "adminUsername": {
         "value": "ContosoAdmin"
@@ -72,12 +72,12 @@
         "value": "root.fabrikam.com"      
     },
     "dnsPrefix": {   
-	      "value": "lbguidrandomwk1"
+	      "value": "lbguidrandomwk2"
     },
-    "pdcRDPPort": {
+    "dc1RDPPort": {
       "value": 3389
     },
-    "bdcRDPPort": {
+    "dc2RDPPort": {
         "value": 13389
     },
     "AssetLocation": {

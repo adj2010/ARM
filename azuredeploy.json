@@ -7,7 +7,7 @@
       "metadata": {
         "description": "The name of the new storage account created to store the VMs disks"
       },
-	"defaultValue": "ContosoStorageGUID1001"
+      "defaultValue": "ContosoStorageGUID1002"
     },
     "storageAccountType": {
       "type": "string",
@@ -35,7 +35,7 @@
       "metadata": {
         "description": "The region to deploy the resources into"
       },
-	"defaultValue": "West US"
+      "defaultValue": "West US"
     },
     "virtualNetworkName": {
       "type": "string",
@@ -65,31 +65,31 @@
       },
       "defaultValue": "10.0.0.0/24"
     },
-    "adPDCNicName": {
+    "adDC1NicName": {
       "type": "string",
       "metadata": {
-        "description": "The name of the NIC attached to the new PDC"
+        "description": "The name of the NIC attached to the new DC1"
       },
-      "defaultValue": "adPDCNic"
+      "defaultValue": "adDC1Nic"
     },
-    "adPDCNicIPAddress": {
+    "adDC1NicIPAddress": {
       "type": "string",
       "metadata": {
-        "description": "The IP address of the new AD PDC"
+        "description": "The IP address of the new AD DC1"
       },
       "defaultValue": "10.0.0.4"
     },
-    "adBDCNicName": {
+    "adDC2NicName": {
       "type": "string",
       "metadata": {
-        "description": "The name of the NIC attached to the new BDC"
+        "description": "The name of the NIC attached to the new DC2"
       },
-      "defaultValue": "adBDCNic"
+      "defaultValue": "adDC2Nic"
     },
-    "adBDCNicIPAddress": {
+    "adDC2NicIPAddress": {
       "type": "string",
       "metadata": {
-        "description": "The IP address of the new AD BDC"
+        "description": "The IP address of the new AD DC2"
       },
       "defaultValue": "10.0.0.5"
     },
@@ -111,19 +111,19 @@
       },
       "defaultValue": "Dynamic"
     },
-    "adPDCVMName": {
+    "adDC1VMName": {
       "type": "string",
       "metadata": {
-        "description": "The computer name of the PDC"
+        "description": "The computer name of DC1"
       },
-      "defaultValue": "adPDC"
+      "defaultValue": "adDC1"
     },
-    "adBDCVMName": {
+    "adDC2VMName": {
       "type": "string",
       "metadata": {
-        "description": "The computer name of the BDC"
+        "description": "The computer name of DC2"
       },
-      "defaultValue": "adBDC"
+      "defaultValue": "adDC2"
     },
     "adminUsername": {
       "type": "string",
@@ -196,26 +196,26 @@
       "metadata": {
         "description": "The FQDN of the AD Domain created "
       },
-	"defaultValue": "root.contoso.com"      
+      "defaultValue": "root.contoso.com"
     },
     "dnsPrefix": {
       "type": "string",
       "metadata": {
         "description": "The DNS prefix for the public IP address used by the Load Balancer"
       },
-	"defaultValue": "lbguidrandom"
+      "defaultValue": "lbguidrandom"
     },
-    "pdcRDPPort": {
+    "dc1RDPPort": {
       "type": "int",
       "metadata": {
-        "description": "The public RDP port for the PDC VM"
+        "description": "The public RDP port for DC1 VM"
       },
       "defaultValue": 3389
     },
-    "bdcRDPPort": {
+    "dc2RDPPort": {
       "type": "int",
       "metadata": {
-        "description": "The public RDP port for the BDC VM"
+        "description": "The public RDP port for DC2 VM"
       },
       "defaultValue": 13389
     },
@@ -230,30 +230,30 @@
   "variables": {
     "adLBFE": "LBFE",
     "adLBBE": "LBBE",
-    "adPDCRDPNAT": "adPDCRDP",
-    "adBDCRDPNAT": "adBDCRDP",
+    "adDC1RDPNAT": "adDC1RDP",
+    "adDC2RDPNAT": "adDC2RDP",
     "VnetID": "[resourceId('Microsoft.Network/virtualNetworks', parameters('virtualNetworkName'))]",
     "adSubnetRef": "[concat(variables('VnetID'),'/subnets/',parameters('adSubnetName'))]",
-    "adPDCNicId": "[resourceId('Microsoft.Network/networkInterfaces',parameters('adPDCNicName'))]",
-    "adPDCIPConfigID": "[concat(variables('adPDCNicId'),'/ipConfigurations/ipconfig1')]",
-    "adBDCNicId": "[resourceId('Microsoft.Network/networkInterfaces',parameters('adBDCNicName'))]",
-    "adBDCIPConfigID": "[concat(variables('adBDCNicId'),'/ipConfigurations/ipconfig1')]",
+    "adDC1NicId": "[resourceId('Microsoft.Network/networkInterfaces',parameters('adDC1NicName'))]",
+    "adDC1IPConfigID": "[concat(variables('adDC1NicId'),'/ipConfigurations/ipconfig1')]",
+    "adDC2NicId": "[resourceId('Microsoft.Network/networkInterfaces',parameters('adDC2NicName'))]",
+    "adDC2IPConfigID": "[concat(variables('adDC2NicId'),'/ipConfigurations/ipconfig1')]",
     "adLBName": "adLoadBalancer",
     "adlbID": "[resourceId('Microsoft.Network/loadBalancers',variables('adLBName'))]",
     "adlbFEConfigID": "[concat(variables('adlbID'),'/frontendIPConfigurations/',variables('adLBFE'))]",
-    "adPDCRDPNATRuleID": "[concat(variables('adlbID'),'/inboundNatRules/',variables('adPDCRDPNAT'))]",
-    "adBDCRDPNATRuleID": "[concat(variables('adlbID'),'/inboundNatRules/',variables('adBDCRDPNAT'))]",
+    "adDC1RDPNATRuleID": "[concat(variables('adlbID'),'/inboundNatRules/',variables('adDC1RDPNAT'))]",
+    "adDC2RDPNATRuleID": "[concat(variables('adlbID'),'/inboundNatRules/',variables('adDC2RDPNAT'))]",
     "adBEAddressPoolID": "[concat(variables('adlbID'),'/backendAddressPools/',variables('adLBBE'))]",
-    "adPDCDataDisk": "ADPDCDataDisk",
-    "adBDCDataDisk": "ADBDCDataDisk",
+    "adDC1DataDisk": "adDC1DataDisk",
+    "adDC2DataDisk": "adDC2DataDisk",
     "adDataDiskSize": 1000,
     "vnetTemplateUri": "[concat(parameters('AssetLocation'),'/vnet.json')]",
     "nicTemplateUri": "[concat(parameters('AssetLocation'),'/nic.json')]",
     "vnetwithDNSTemplateUri": "[concat(parameters('AssetLocation'),'/vnet-with-dns-server.json')]",
-    "adPDCModulesURL": "[concat(parameters('AssetLocation'),'/CreateADPDC.ps1.zip')]",
-    "adPDCConfigurationFunction": "CreateADPDC.ps1\\CreateADPDC",
-    "adBDCModulesURL": "[concat(parameters('AssetLocation'),'/CreateADBDC.ps1.zip')]",
-    "adBDCConfigurationFunction": "CreateADBDC.ps1\\CreateADBDC"
+    "adDC1ModulesURL": "[concat(parameters('AssetLocation'),'/CreateADPDC.ps1.zip')]",
+    "adDC1ConfigurationFunction": "CreateADPDC.ps1\\CreateADPDC",
+    "adDC2ModulesURL": "[concat(parameters('AssetLocation'),'/CreateADBDC.ps1.zip')]",
+    "adDC2ConfigurationFunction": "CreateADBDC.ps1\\CreateADBDC"
   },
   "resources": [
     {
@@ -338,25 +338,25 @@
         ],
         "inboundNatRules": [
           {
-            "name": "[variables('adPDCRDPNAT')]",
+            "name": "[variables('adDC1RDPNAT')]",
             "properties": {
               "frontendIPConfiguration": {
                 "id": "[variables('adlbFEConfigID')]"
               },
               "protocol": "tcp",
-              "frontendPort": "[parameters('pdcRDPPort')]",
+              "frontendPort": "[parameters('dc1RDPPort')]",
               "backendPort": 3389,
               "enableFloatingIP": false
             }
           },
           {
-            "name": "[variables('adBDCRDPNAT')]",
+            "name": "[variables('adDC2RDPNAT')]",
             "properties": {
               "frontendIPConfiguration": {
                 "id": "[variables('adlbFEConfigID')]"
               },
               "protocol": "tcp",
-              "frontendPort": "[parameters('bdcRDPPort')]",
+              "frontendPort": "[parameters('dc2RDPPort')]",
               "backendPort": 3389,
               "enableFloatingIP": false
             }
@@ -365,7 +365,7 @@
       }
     },
     {
-      "name": "[parameters('adPDCNicName')]",
+      "name": "[parameters('adDC1NicName')]",
       "type": "Microsoft.Network/networkInterfaces",
       "location": "[parameters('location')]",
       "dependsOn": [
@@ -379,7 +379,7 @@
             "name": "ipconfig1",
             "properties": {
               "privateIPAllocationMethod": "Static",
-              "privateIPAddress": "[parameters('adPDCNicIPAddress')]",
+              "privateIPAddress": "[parameters('adDC1NicIPAddress')]",
               "subnet": {
                 "id": "[variables('adSubnetRef')]"
               },
@@ -390,7 +390,7 @@
               ],
               "loadBalancerInboundNatRules": [
                 {
-                  "id": "[variables('adPDCRDPNATRuleID')]"
+                  "id": "[variables('adDC1RDPNATRuleID')]"
                 }
               ]
             }
@@ -399,7 +399,7 @@
       }
     },
     {
-      "name": "[parameters('adBDCNicName')]",
+      "name": "[parameters('adDC2NicName')]",
       "type": "Microsoft.Network/networkInterfaces",
       "location": "[parameters('location')]",
       "dependsOn": [
@@ -413,7 +413,7 @@
             "name": "ipconfig1",
             "properties": {
               "privateIPAllocationMethod": "Static",
-              "privateIPAddress": "[parameters('adBDCNicIPAddress')]",
+              "privateIPAddress": "[parameters('adDC2NicIPAddress')]",
               "subnet": {
                 "id": "[variables('adSubnetRef')]"
               },
@@ -424,7 +424,7 @@
               ],
               "loadBalancerInboundNatRules": [
                 {
-                  "id": "[variables('adBDCRDPNATRuleID')]"
+                  "id": "[variables('adDC2RDPNATRuleID')]"
                 }
               ]
             }
@@ -435,11 +435,11 @@
     {
       "apiVersion": "2015-05-01-preview",
       "type": "Microsoft.Compute/virtualMachines",
-      "name": "[parameters('adPDCVMName')]",
+      "name": "[parameters('adDC1VMName')]",
       "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Storage/storageAccounts',parameters('newStorageAccountName'))]",
-        "[resourceId('Microsoft.Network/networkInterfaces',parameters('adPDCNicName'))]",
+        "[resourceId('Microsoft.Network/networkInterfaces',parameters('adDC1NicName'))]",
         "[resourceId('Microsoft.Compute/availabilitySets', parameters('adAvailabilitySetName'))]",
         "[resourceId('Microsoft.Network/loadBalancers',variables('adLBName'))]"
       ],
@@ -451,7 +451,7 @@
           "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('adAvailabilitySetName'))]"
         },
         "osProfile": {
-          "computername": "[parameters('adPDCVMName')]",
+          "computername": "[parameters('adDC1VMName')]",
           "adminUsername": "[parameters('adminUsername')]",
           "adminPassword": "[parameters('adminPassword')]"
         },
@@ -473,9 +473,9 @@
           "dataDisks": [
             {
               "vhd": {
-                "uri": "[concat('http://',parameters('newStorageAccountName'),'.blob.core.windows.net/vhds0/', variables('adPDCDataDisk'),'-1.vhd')]"
+                "uri": "[concat('http://',parameters('newStorageAccountName'),'.blob.core.windows.net/vhds0/', variables('adDC1DataDisk'),'-1.vhd')]"
               },
-              "name": "[concat(parameters('adPDCVMName'),'-data-disk1')]",
+              "name": "[concat(parameters('adDC1VMName'),'-data-disk1')]",
               "caching": "None",
               "diskSizeGB": "[variables('adDataDiskSize')]",
               "lun": 0,
@@ -486,7 +486,7 @@
         "networkProfile": {
           "networkInterfaces": [
             {
-              "id": "[resourceId('Microsoft.Network/networkInterfaces',parameters('adPDCNicName'))]"
+              "id": "[resourceId('Microsoft.Network/networkInterfaces',parameters('adDC1NicName'))]"
             }
           ]
         }
@@ -494,19 +494,19 @@
       "resources": [
         {
           "type": "Microsoft.Compute/virtualMachines/extensions",
-          "name": "[concat(parameters('adPDCVMName'),'/CreateADForest')]",
+          "name": "[concat(parameters('adDC1VMName'),'/CreateADForest')]",
           "apiVersion": "2015-05-01-preview",
           "location": "[parameters('location')]",
           "dependsOn": [
-            "[resourceId('Microsoft.Compute/virtualMachines', parameters('adPDCVMName'))]"
+            "[resourceId('Microsoft.Compute/virtualMachines', parameters('adDC1VMName'))]"
           ],
           "properties": {
             "publisher": "Microsoft.Powershell",
             "type": "DSC",
             "typeHandlerVersion": "2.8",
             "settings": {
-              "ModulesUrl": "[variables('adPDCModulesURL')]",
-              "ConfigurationFunction": "[variables('adPDCConfigurationFunction')]",
+              "ModulesUrl": "[variables('adDC1ModulesURL')]",
+              "ConfigurationFunction": "[variables('adDC1ConfigurationFunction')]",
               "Properties": {
                 "DomainName": "[parameters('domainName')]",
                 "AdminCreds": {
@@ -529,7 +529,7 @@
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2015-01-01",
       "dependsOn": [
-        "[concat('Microsoft.Compute/virtualMachines/', parameters('adPDCVMName'),'/extensions/CreateADForest')]"
+        "[concat('Microsoft.Compute/virtualMachines/', parameters('adDC1VMName'),'/extensions/CreateADForest')]"
       ],
       "properties": {
         "mode": "Incremental",
@@ -555,14 +555,14 @@
           },
           "DNSServerAddress": {
             "value": [
-              "[parameters('adPDCNicIPAddress')]"
+              "[parameters('adDC1NicIPAddress')]"
             ]
           }
         }
       }
     },
     {
-      "name": "UpdateBDCNIC",
+      "name": "UpdateDC2NIC",
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2015-01-01",
       "dependsOn": [
@@ -579,7 +579,7 @@
             "value": "[parameters('location')]"
           },
           "nicName": {
-            "value": "[parameters('adBDCNicName')]"
+            "value": "[parameters('adDC2NicName')]"
           },
           "ipConfigurations": {
             "value": [
@@ -587,7 +587,7 @@
                 "name": "ipconfig1",
                 "properties": {
                   "privateIPAllocationMethod": "Static",
-                  "privateIPAddress": "[parameters('adBDCNicIPAddress')]",
+                  "privateIPAddress": "[parameters('adDC2NicIPAddress')]",
                   "subnet": {
                     "id": "[variables('adSubnetRef')]"
                   },
@@ -598,7 +598,7 @@
                   ],
                   "loadBalancerInboundNatRules": [
                     {
-                      "id": "[variables('adBDCRDPNATRuleID')]"
+                      "id": "[variables('adDC2RDPNATRuleID')]"
                     }
                   ]
                 }
@@ -607,7 +607,7 @@
           },
           "dnsServers": {
             "value": [
-              "[parameters('adPDCNicIPAddress')]"
+              "[parameters('adDC1NicIPAddress')]"
             ]
           }
         }
@@ -616,11 +616,11 @@
     {
       "apiVersion": "2015-05-01-preview",
       "type": "Microsoft.Compute/virtualMachines",
-      "name": "[parameters('adBDCVMName')]",
+      "name": "[parameters('adDC2VMName')]",
       "location": "[parameters('location')]",
       "dependsOn": [
         "[resourceId('Microsoft.Storage/storageAccounts',parameters('newStorageAccountName'))]",
-        "[resourceId('Microsoft.Network/networkInterfaces',parameters('adBDCNicName'))]",
+        "[resourceId('Microsoft.Network/networkInterfaces',parameters('adDC2NicName'))]",
         "[resourceId('Microsoft.Compute/availabilitySets', parameters('adAvailabilitySetName'))]",
         "[resourceId('Microsoft.Network/loadBalancers',variables('adLBName'))]"
       ],
@@ -632,7 +632,7 @@
           "id": "[resourceId('Microsoft.Compute/availabilitySets', parameters('adAvailabilitySetName'))]"
         },
         "osProfile": {
-          "computername": "[parameters('adBDCVMName')]",
+          "computername": "[parameters('adDC2VMName')]",
           "adminUsername": "[parameters('adminUsername')]",
           "adminPassword": "[parameters('adminPassword')]"
         },
@@ -654,9 +654,9 @@
           "dataDisks": [
             {
               "vhd": {
-                "uri": "[concat('http://',parameters('newStorageAccountName'),'.blob.core.windows.net/vhds1/', variables('adBDCDataDisk'),'-1.vhd')]"
+                "uri": "[concat('http://',parameters('newStorageAccountName'),'.blob.core.windows.net/vhds1/', variables('adDC2DataDisk'),'-1.vhd')]"
               },
-              "name": "[concat(parameters('adBDCVMName'),'-data-disk1')]",
+              "name": "[concat(parameters('adDC2VMName'),'-data-disk1')]",
               "caching": "None",
               "diskSizeGB": "[variables('adDataDiskSize')]",
               "lun": 0,
@@ -667,7 +667,7 @@
         "networkProfile": {
           "networkInterfaces": [
             {
-              "id": "[resourceId('Microsoft.Network/networkInterfaces',parameters('adBDCNicName'))]"
+              "id": "[resourceId('Microsoft.Network/networkInterfaces',parameters('adDC2NicName'))]"
             }
           ]
         }
@@ -675,20 +675,20 @@
     },
     {
       "type": "Microsoft.Compute/virtualMachines/extensions",
-      "name": "[concat(parameters('adBDCVMName'),'/CreateBDC')]",
+      "name": "[concat(parameters('adDC2VMName'),'/CreateDC2')]",
       "apiVersion": "2015-05-01-preview",
       "location": "[parameters('location')]",
       "dependsOn": [
-        "[concat('Microsoft.Compute/virtualMachines/', parameters('adBDCVMName'))]",
-        "Microsoft.Resources/deployments/UpdateBDCNIC"
+        "[concat('Microsoft.Compute/virtualMachines/', parameters('adDC2VMName'))]",
+        "Microsoft.Resources/deployments/UpdateDC2NIC"
       ],
       "properties": {
         "publisher": "Microsoft.Powershell",
         "type": "DSC",
         "typeHandlerVersion": "2.8",
         "settings": {
-          "ModulesUrl": "[variables('adBDCModulesURL')]",
-          "ConfigurationFunction": "[variables('adBDCConfigurationFunction')]",
+          "ModulesUrl": "[variables('adDC2ModulesURL')]",
+          "ConfigurationFunction": "[variables('adDC2ConfigurationFunction')]",
           "Properties": {
             "DomainName": "[parameters('domainName')]",
             "AdminCreds": {
@@ -709,7 +709,7 @@
       "type": "Microsoft.Resources/deployments",
       "apiVersion": "2015-01-01",
       "dependsOn": [
-        "[concat('Microsoft.Compute/virtualMachines/',parameters('adBDCVMName'),'/extensions/CreateBDC')]"
+        "[concat('Microsoft.Compute/virtualMachines/',parameters('adDC2VMName'),'/extensions/CreateDC2')]"
       ],
       "properties": {
         "mode": "Incremental",
@@ -735,8 +735,8 @@
           },
           "DNSServerAddress": {
             "value": [
-              "[parameters('adPDCNicIPAddress')]",
-              "[parameters('adBDCNicIPAddress')]"
+              "[parameters('adDC1NicIPAddress')]",
+              "[parameters('adDC2NicIPAddress')]"
             ]
           }
         }
@@ -744,4 +744,3 @@
     }
   ]
 }
-
