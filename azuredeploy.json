@@ -2,13 +2,6 @@
   "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
   "contentVersion": "1.0.0.0",
   "parameters": {
-    "newStorageAccountName": {
-      "type": "string",
-      "metadata": {
-        "description": "The name of the new storage account created to store the VMs disks"
-      },
-	"defaultValue": "ContosoStorageFFFF"
-    },
     "storageAccountType": {
       "type": "string",
       "allowedValues": [
@@ -199,13 +192,6 @@
       },
       "defaultValue": "root.contoso.com"
     },
-    "dnsPrefix": {
-      "type": "string",
-      "metadata": {
-        "description": "The DNS prefix for the public IP address used by the Load Balancer"
-      },
-	"defaultValue": "dnslbguidrandom"
-    },
     "dc1RDPPort": {
       "type": "int",
       "metadata": {
@@ -255,6 +241,8 @@
     "adDC1ConfigurationFunction": "CreateADPDC.ps1\\CreateADPDC",
     "adDC2ModulesURL": "[concat(parameters('AssetLocation'),'/CreateADBDC.ps1.zip')]",
     "adDC2ConfigurationFunction": "CreateADBDC.ps1\\CreateADBDC"
+    "newstorageaccountname" : "[concat('contosostorage', uniqueString(resourceGroup().id))]",
+    "dnsPrefix" : "[concat('dnsprefix', uniqueString(resourceGroup().id))]",
   },
   "resources": [
     {
