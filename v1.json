@@ -13,8 +13,8 @@
             "metadata": {
                 "description": "Name of the Vault"
             },
-	"defaultValue": "Contoso Backup Vault"
-        },
+	"defaultValue": "contosobackupvault"
+        }
         "location": {
             "type": "string",
             "allowedValues": [
