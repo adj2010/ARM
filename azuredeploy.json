@@ -130,7 +130,7 @@
             "metadata": {
                 "description": "The password for the Administrator account of the new VM and Domain"
             },
-            "defaultValue": "PutPeopleFirst!"
+            "defaultValue": "RootPassword1"
         },
         "adVMSize": {
             "type": "string",
